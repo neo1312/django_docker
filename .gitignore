@@ -1,0 +1,36 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+### Docker ###
+.env
+.env.dev
+.env.prod
+docker-compose.override.yml
+
+### Virtual Environment ###
+venv/
+.venv/
+env/
+
+### IDE ###
+.idea/
+.vscode/
+*.swp
+*.swo
+
+### Database ###
+*.dump
+*.backup
+
+### macOS ###
+.DS_Store
+
+### Windows ###
+Thumbs.db
