@@ -1,5 +1,5 @@
 from django.db import models
-from ../core.models.base  import TimeStampedModel
+from core.models  import TimeStampedModel
 
 class Product(TimeStampedModel):
     UNIT_CHOICES = [
