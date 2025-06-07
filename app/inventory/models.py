@@ -1,6 +1,11 @@
 from django.db import models
 from core.models  import TimeStampedModel
 
+class Brand(TimeStampedModel):
+    name = models.CharField(max_length=225, unique=True)
+    def __str__(sefl):
+        return self.name
+
 class Product(TimeStampedModel):
     UNIT_CHOICES = [
             ('grams' 'Grams'),
