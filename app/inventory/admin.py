@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, ProductVariant
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -12,3 +12,10 @@ class ProductAdmin(admin.ModelAdmin):
     @admin.display(description='Last Updated')
     def last_updated(self, obj):
         return obj.updated_at.strftime("%Y-%m-%d %H:%M")
+
+
+@admin.register(ProductVariant)
+class ProductVariantAdmin(admin.ModelAdmin):
+    list_display = ('product','brand','stock')
+    list_filter = ('is_active', 'product')
+    search_fields = ('product__name',)

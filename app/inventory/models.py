@@ -23,3 +23,12 @@ class Product(TimeStampedModel):
 
     def __str__(self):
         return f"{self.name} (${self.price})"
+
+class ProductVariant(TimeStampedModel):
+    product = models.ForeignKey(Product, related_name="variants", on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
+    barcode = models.CharField(max_length=50, unique=True)
+    stock = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.brand.name if self.brand else 'No Brand'}"
