@@ -81,3 +81,42 @@ class ProductVariantModelTest(TestCase):
             stock=5
         )
         self.assertEqual(str(variant), "Taladro - No Brand")
+
+class ProductTimeStampedModelTest(TestCase):
+    def test_timestamps_and_is_active_exist(self):
+        # Crear un producto de prueba
+        product = Product.objects.create(
+            name="Producto Test",
+            min_stock=1,
+            max_stock=10,
+            quantity=5,
+            price=Decimal("20.00"),
+            is_bulk=False,
+            is_active=True
+        )
+
+        # Comprobar que los campos existan y tengan valores válidos
+        self.assertIsNotNone(product.created_at)
+        self.assertIsNotNone(product.updated_at)
+        self.assertTrue(product.is_active)
+
+    def test_updated_at_changes_on_save(self):
+        product = Product.objects.create(
+            name="Producto Test 2",
+            min_stock=1,
+            max_stock=10,
+            quantity=5,
+            price=Decimal("30.00"),
+            is_bulk=False,
+            is_active=True
+        )
+
+        original_updated_at = product.updated_at
+
+        import time
+        time.sleep(1)  # Esperar 1 segundo para notar el cambio en la fecha
+
+        product.name = "Producto Test Modificado"
+        product.save()
+
+        self.assertNotEqual(product.updated_at, original_updated_at)
