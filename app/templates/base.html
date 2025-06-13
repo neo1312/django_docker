@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}My App{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="has-background-light has-text-grey-dark">
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <strong>Ferreteria Leon</strong>
+      </a>
+    </div>
+
+    <div class="navbar-menu is-active">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">Home</a>
+
+        <div
+          class="navbar-item has-dropdown"
+          x-data="{ open: false }"
+          :class="{ 'is-active': open }"
+          @click.outside="open = false"
+        >
+          <a class="navbar-link" @click.prevent="open = !open">
+            Modules
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/inventory/">Inventory</a>
+            <a class="navbar-item" href="/test/app/">Test Page</a>
+            <a class="navbar-item" href="/reports/">Reports</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">{% block content %}{% endblock %}</div>
+  </section>
+</body>
+</html>
+
