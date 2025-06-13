@@ -1,0 +1,24 @@
+<!-- templates/_modules_dropdown.html -->
+<div
+  class="navbar-item has-dropdown"
+  x-data="{ open: false }"
+  :class="{ 'is-active': open }"
+  @click.outside="open = false"
+>
+  <a class="navbar-link" @click.prevent="open = !open">
+    <span class="icon">
+      <i class="fas fa-th-large"></i>  <!-- Grid icon -->
+    </span>
+    <span>Modules</span>
+  </a>
+  <div class="navbar-dropdown">
+    {% for module in modules %}
+    <a class="navbar-item" href="{{ module.url }}">
+      <span class="icon">
+        <i class="{{ module.icon }}"></i>
+      </span>
+      <span>{{ module.name }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
