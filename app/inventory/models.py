@@ -10,7 +10,7 @@ class Brand(TimeStampedModel):
 
 class Product(TimeStampedModel):
     UNIT_CHOICES = [
-            ('grams' 'Grams'),
+            ('grams', 'Grams'),
             ('kilograms', 'Kilograms'),
             ('units', 'Units'),
             ('meters','Meters')
@@ -24,6 +24,10 @@ class Product(TimeStampedModel):
 
     def __str__(self):
         return f"{self.name} (${self.price:.2f})"
+
+    @property
+    def total_stock(self):
+        return self.variants.aggregate(total=models.Sum('stock'))['total'] or 0
 
 class ProductVariant(TimeStampedModel):
     product = models.ForeignKey(Product, related_name="variants", on_delete=models.CASCADE)
