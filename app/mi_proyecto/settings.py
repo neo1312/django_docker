@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventory.apps.InventoryConfig',
     'core.apps.CoreConfig',
+    'crm.apps.CrmConfig',
+    'srm.apps.SrmConfig',
+    'report.apps.ReportConfig',
 ]
 
 MIDDLEWARE = [
