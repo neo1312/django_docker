@@ -120,3 +120,38 @@ class ProductTimeStampedModelTest(TestCase):
         product.save()
 
         self.assertNotEqual(product.updated_at, original_updated_at)
+
+class ProductListViewTest(TestCase):
+    def test_product_list_view_return_200(self):
+        response = self.client.get(reverse('product_list'))
+        self.assertEqual(response.status_code,200)
+    def test_product_list_view_shows_products(self):
+        Product.objects.create(name="Martillo",price=1)
+        Product.objects.create(name="Clavos",price=2)
+
+        response = self.client.get(reverse('product_list'))
+        self.assertContains(response, "Martillo")
+        self.assertContains(response, "Clavos")
+
+    def test_product_list_view_filters_by_name(self):
+
+        Product.objects.create(name="Martillo",price=1)
+        Product.objects.create(name="Clavos",price=2)
+        response = self.client.get(reverse('product_list'), {'q': 'martillo'})
+        self.assertContains(response, "Martillo")
+        self.assertNotContains(response, "Clavos")
+    def test_product_list_view_filters_by_barcode(self):
+        product = Product.objects.create(name="Taladro",price=4)
+        ProductVariant.objects.create(product=product, barcode="123ABC")
+
+        response = self.client.get(reverse('product_list'), {'q': '123ABC'})
+        self.assertContains(response, "Taladro") 
+    def test_htmx_request_renders_table_template(self):
+        Product.objects.create(name="Lijadora",price=1)
+
+        response = self.client.get(
+            reverse('product_list'),
+            HTTP_HX_REQUEST='true'
+        )
+        self.assertTemplateUsed(response, 'table.html')
+

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-gapless" style="height: 100vh;">
+    <!-- Columna Izquierda -->
+    <div class="column is-half" style="background-color: #f5f5f5; padding: 2rem; overflow-y: auto;">
+        <!-- Barra de Búsqueda Instantánea -->
+        <div class="field has-addons mb-5">
+            <div class="control is-expanded">
+                <input class="input is-medium" 
+                       type="text" 
+                       name="q"
+                       placeholder="Nombre o Codigo_Barras"
+		       autocomplete="off"
+                       hx-get="{% url 'product_list' %}"
+		       hx-trigger="keyup changed delay:500ms"
+		       hx-target="#product-table">
+            </div>
+            <div class="control">
+                <button class="button is-medium is-info">
+                    <span class="icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Contenedor de la Tabla -->
+        <div id="product-table">
+            {% include 'table.html' %}
+        </div>
+    </div>
+
+
+<!-- Right Column -->
+<div class="column is-half" style="background-color: #fafafa; padding: 2rem; display: flex; flex-direction: column; height: 100vh;">
+    <!-- Top: Invoice Actions -->
+    <div class="buttons are-medium mb-5">
+        <button class="button is-info is-light">
+            <span class="icon">
+                <i class="fas fa-file-invoice"></i>
+            </span>
+            <span>New Invoice</span>
+        </button>
+        <button class="button is-success is-light" disabled>
+            <span class="icon">
+                <i class="fas fa-save"></i>
+            </span>
+            <span>Save Invoice</span>
+        </button>
+    </div>
+
+    <!-- Middle: Added Products -->
+    <div class="box is-flex-grow-1" style="overflow-y: auto; background-color: white;">
+        <div class="content has-text-centered" style="margin-top: 30%;">
+            <span class="icon is-large has-text-grey-light">
+                <i class="fas fa-box-open fa-4x"></i>
+            </span>
+            <h2 class="title is-4 has-text-grey-light mt-4">Selected Products</h2>
+            <p class="has-text-grey-light">Add products from the left</p>
+        </div>
+    </div>
+
+    <!-- Bottom: Invoice Total -->
+    <div class="box mt-4 has-background-grey-lighter">
+        <div class="level is-mobile">
+            <div class="level-left">
+                <span class="title is-5">Total:</span>
+            </div>
+            <div class="level-right">
+                <span class="title is-5">$0.00</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
