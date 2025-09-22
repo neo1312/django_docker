@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crm.apps.CrmConfig',
     'srm.apps.SrmConfig',
     'report.apps.ReportConfig',
+    'productsupplier'
 ]
 
 MIDDLEWARE = [
