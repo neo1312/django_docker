@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1 class="title is-3 has-text-centered mb-6">Ordenes</h1>
+
+<div class="columns is-multiline is-centered">
+  {% for module in modules %}
+  <div class="column is-4-tablet is-3-desktop">
+    <a href="{{ module.url }}" class="box has-text-centered has-background-light has-shadow is-hoverable">
+      <span class="icon is-large">
+        <i class="{{ module.icon }} fa-2x"></i>
+      </span>
+      <p class="mt-2 has-text-weight-semibold">{{ module.name }}</p>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

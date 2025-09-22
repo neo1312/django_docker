@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Alpine popup - Step 1</title>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; }
+    .card { background:white; padding:1rem; border-radius:8px; width:90%; max-width:480px; }
+  </style>
+</head>
+<body>
+
+<div x-data="{ showPopup: false }" class="p-4">
+  <button @click="showPopup = true">Open Popup (Alpine only)</button>
+
+  <!-- Popup -->
+  <div x-show="showPopup" x-cloak class="overlay" @click.self="showPopup=false">
+    <div class="card" @keydown.escape.window="showPopup=false">
+      <h3>Order details (static)</h3>
+      <p>This content is already in the page. Edit fields here.</p>
+      <label>Qty: <input type="number" value="1"></label>
+      <div style="margin-top:1rem">
+        <button @click="showPopup=false">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

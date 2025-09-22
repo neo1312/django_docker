@@ -1,0 +1,36 @@
+<div class="table-container">
+    <table class="table is-fullwidth is-striped is-hoverable">
+        <thead>
+            <tr class="has-background-grey-lighter">
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Agregar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.total_stock}}</td>
+		<td class="has-text-right">
+    		<button class="button is-small is-white is-outlined has-text-grey"
+            	title="Add"
+        	<span class="icon">
+            	<i class="fas fa-plus"></i>
+        	</span>
+		</td>
+    </button>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="has-text-centered py-5">
+                    <div class="notification is-warning is-light">
+                        No se encontraron productos
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -16,7 +16,7 @@ services:
     image: postgres:13
     environment:
       POSTGRES_USER: produser
-      POSTGRES_PASSWORD: prodpass_ultrasegura
+      POSTGRES_PASSWORD: prodpass-ultra-segura
       POSTGRES_DB: dbprod
     volumes:
       - postgres_data_prod:/var/lib/postgresql/data
@@ -29,9 +29,11 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - "82:80"
+      - "80:80"
+      - "443:443"
     volumes:
       - static_volume:/usr/src/app/staticfiles
+      - ./certs:/etc/letsencrypt #for ssl certifiactes
     depends_on:
       - web
 

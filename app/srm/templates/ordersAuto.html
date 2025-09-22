@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="columns">
+  <div class="column has-text-black has-text-centered">
+	  Crear Orden Automatica
+  </div>
+</div>
+
+<!-- Content -->
+<div class="columns">
+  <div class="column  has-text-centered">
+	<table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered" >
+      	<thead  >
+        <tr>
+          <th><title="Nombre">Nombre</th>
+          <th>Team</th>
+	  <th><abbr title="Action">Accion</abbr></th>
+        </tr>
+      	</thead>
+      	<tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
+               title="Leicester City F.C.">Leicester City</a>
+            <strong>(C)</strong>
+          </td>
+          <td>38</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="columns">
+  <div class="column has-background-gray is-dordered has-text-black has-text-centered">
+    Footer
+  </div>
+</div>
+{% endblock %}
+
