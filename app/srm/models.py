@@ -11,6 +11,10 @@ class Supplier(TimeStampedModel):
     credit_score = models.FloatField(default=1.0,validators=[MinValueValidator(1),MaxValueValidator(5)])
     cost_delivery_score= models.FloatField(default=1.0,validators=[MinValueValidator(1),MaxValueValidator(5)])
     overall_score= models.FloatField(default=0.0,validators=[MinValueValidator(1),MaxValueValidator(5)])
+    contact_name = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    active = models.BooleanField(default=True)
+
 
     class Meta:
         app_label = 'srm'
