@@ -1,6 +1,7 @@
 # srm/views.py
 
 from django.shortcuts import render
+from .models import Supplier
 
 def orderMainMenu(request):
     modules = [
@@ -12,5 +13,8 @@ def orderMainMenu(request):
     return render(request, "orders.html", {"modules": modules})
 
 def orderauto(request):
-    return render(request, "ordersAuto.html")
+    payload = {
+            'supplier':Supplier.objects.filter(active=True).order_by('name')
+            }
+    return render(request, "ordersAuto.html",payload)
 
